@@ -8,6 +8,10 @@
     background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
 }
 
+.body ::-webkit-scrollbar{
+    display: none;
+}
+
 .body__info{
     display: flex;
     align-items: flex-end;
@@ -41,6 +45,10 @@
     margin-bottom: 20px;
 }
 
+.body__songs{
+    margin: 20px -30px;
+    z-index: 1;
+}
 .body__shuffle:hover {
     transition: 100ms transform ease-in;
     transform: scale(1.08);
