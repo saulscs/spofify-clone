@@ -8,7 +8,7 @@ import { useDataLayerValue } from './DataLayer';
 //styles
 import './Sidebar.css';
 
-const Sidebar = () => {
+ function Sidebar()  {
     const [{playlists}, dispatch] = useDataLayerValue()
     return (
         <div className="sidebar">

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Login from './Login';
 import Player from './Player'
 import SpotifyWebApi from "spotify-web-api-js"
@@ -20,13 +20,18 @@ function App() {
         window.location.hash = "";
         const token = hash.access_token;
         if (token) {
-            dispatch({type: "SET_TOKEN", token: token});
+            dispatch({
+                type: "SET_TOKEN", 
+                token: token
+            });
 
             spotify.setAccessToken(token);
 
             spotify.getMe().then(user => {
-                console.log("USER", user);
-                dispatch({type: 'SET_USER', user: user})
+                dispatch({
+                    type: 'SET_USER', 
+                    user: user
+                });
             });
 
             spotify.getUserPlaylists().then((playlists) =>{
@@ -35,11 +40,16 @@ function App() {
                     playlists: playlists,
                 });
             });
+
+            spotify.getPlaylist('37i9dQZEVXcEechGQewMQH').then((response) => {
+                dispatch({
+                    type: "SET_DISCOVER_WEEKLY",
+                    discover_weekly: response,
+                });
+            });
         };
-        console.log("TOKEN >>", token)
-    }, []);
-    console.log("USER>>", user);
-    console.log("TOKEN>", token)
+    }, [token, dispatch]);
+    
     return (
         <div className="app">
             {
